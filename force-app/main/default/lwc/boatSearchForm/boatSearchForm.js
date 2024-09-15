@@ -3,7 +3,6 @@ import getBoatTypes from '@salesforce/apex/BoatDataService.getBoatTypes';
 
 export default class BoatSearchForm extends LightningElement {
     selectedBoatTypeId = '';
-    valueSelectedBoatType;
     
     // Private
     error = undefined;
@@ -30,6 +29,7 @@ export default class BoatSearchForm extends LightningElement {
       // Create the const searchEvent
       // searchEvent must be the new custom event search
       this.selectedBoatTypeId = event.target.value;
+      console.log('value selected',this.selectedBoatTypeId)
       const searchEvent = new CustomEvent("search", { detail: { boatTypeId: this.selectedBoatTypeId } });
       this.dispatchEvent(searchEvent);
     }
