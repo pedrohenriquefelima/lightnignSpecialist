@@ -14,11 +14,13 @@ export default class BoatSearchResults extends LightningElement {
   
   // wired message context
   messageContext;
+
   // wired getBoats method 
   @wire(getBoats,{ boatTypeId: '$boatTypeId' })
   wiredBoats({ error, data }) {
     if (data) {
-        console.log('boat data', JSON.stringify(data));
+        console.log('dataa', JSON.stringify(data));
+        this.boats = data;
     } else if (error) {
         console.log('error');
     }
@@ -33,7 +35,10 @@ export default class BoatSearchResults extends LightningElement {
   refresh() { }
   
   // this function must update selectedBoatId and call sendMessageService
-  updateSelectedTile() { }
+  updateSelectedTile(event) { 
+    console.log('updateSelectedTile called');
+    this.selectedBoatId = event.detail;
+  }
   
   // Publishes the selected boat Id on the BoatMC.
   sendMessageService(boatId) { 
