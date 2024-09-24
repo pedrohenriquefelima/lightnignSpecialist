@@ -1,6 +1,5 @@
 <template>
     <lightning-layout multiple-rows>
-      <!-- Top -->
       <lightning-layout-item size="12">
         <lightning-card title="Find a Boat">
             <div slot="actions">
@@ -13,11 +12,11 @@
             </p>
         </lightning-card>
       </lightning-layout-item>
-      <!-- Bottom -->
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
-        <!-- Spinner goes here -->
-        <c-boat-search-results boat-type-id={boatTypeId}></c-boat-search-results>
-        <!-- onloading={handleLoading} ondoneloading={handleDoneLoading} -->
+        <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" size="xx-small" variant="brand"></lightning-spinner>
+        </template>
+        <c-boat-search-results boat-type-id={boatTypeId} onloading={handleLoading} ondoneloading={handleDoneLoading}></c-boat-search-results>
       </lightning-layout-item>
     </lightning-layout>
   </template>
