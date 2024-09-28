@@ -1,12 +1,11 @@
-import { LightningElement, api } from 'lwc';
-
-// imports
+import { LightningElement,api } from 'lwc';
 import BOAT_REVIEW_OBJECT from "@salesforce/schema/BoatReview__c";
 import NAME_FIELD from "@salesforce/schema/BoatReview__c.Name";
 import COMMENT_FIELD from "@salesforce/schema/BoatReview__c.Comment__c";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 const SUCCESS_TITLE = 'Review Created!';
 const SUCCESS_VARIANT = 'success';
+
 export default class BoatAddReviewForm extends LightningElement {
     // Private
     boatId;
@@ -23,13 +22,12 @@ export default class BoatAddReviewForm extends LightningElement {
         return this.boatId;
     }
     set recordId(value) {
-        console.log('valueRecordId', value);
         this.boatId = value;
     }
     
     // Gets user rating input from stars component
     handleRatingChanged(event) { 
-        
+        this.rating = event.detail.rating;
     }
     
     // Custom submission handler to properly set Rating
