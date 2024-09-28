@@ -1,15 +1,14 @@
 <template>
-
-        <lightning-card if:false={wiredRecord.data}>
-            <span class="no-boat-height slds-align_absolute-center">{label.labelPleaseSelectABoat}</span>
-        </lightning-card>
+        <template if:false={wiredRecord.data}>
+            <lightning-card >
+                <span class="no-boat-height slds-align_absolute-center">{label.labelPleaseSelectABoat}</span>
+            </lightning-card>
+        </template>
         <template if:true={wiredRecord.data}>
             <lightning-tabset variant="scoped">
                 <lightning-tab label={label.labelDetails}>
                     <lightning-card title={boatName} icon-name={detailsTabIconName}>
-                        <div slot="actions">
-                            <lightning-button label={label.labelFullDetails}  onclick={navigateToRecordViewPage}></lightning-button>
-                        </div>
+                        <lightning-button label={label.labelFullDetails} onclick={navigateToRecordViewPage} slot="actions"></lightning-button>
                         <lightning-record-view-form record-id={boatId} object-api-name="Boat__c" density="compact">
                             <lightning-output-field field-name="BoatType__c"> </lightning-output-field>
                             <lightning-output-field field-name="Length__c"> </lightning-output-field>

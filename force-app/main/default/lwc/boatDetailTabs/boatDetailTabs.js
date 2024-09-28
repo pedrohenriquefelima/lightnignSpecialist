@@ -9,7 +9,9 @@ import labelFullDetails from '@salesforce/label/c.Full_Details';
 import labelAddReview from '@salesforce/label/c.Add_Review';
 import labelReviews from '@salesforce/label/c.Reviews';
 import labelPleaseSelectABoat from '@salesforce/label/c.Please_select_a_boat';
-const BOAT_FIELDS = ['Boat__c.Id', 'Boat__c.Name'];
+import BOAT_ID_FIELD from '@salesforce/schema/Boat__c.Id';
+import BOAT_NAME_FIELD from '@salesforce/schema/Boat__c.Name';
+const BOAT_FIELDS = [BOAT_ID_FIELD, BOAT_NAME_FIELD];
 
 export default class BoatDetailTabs extends NavigationMixin(LightningElement) {
     boatId;
@@ -78,8 +80,8 @@ export default class BoatDetailTabs extends NavigationMixin(LightningElement) {
     
     // Navigates back to the review list, and refreshes reviews component
     handleReviewCreated() {
-        console.log('navigating to reviews');
         this.template.querySelector('lightning-tabset').activeTabValue = 'reviews';
+        this.template.querySelector('c-boat-reviews').refresh();
      }
 
     unsubscribeToMessageChannel() {
